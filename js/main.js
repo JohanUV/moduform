@@ -80,6 +80,10 @@ const WA_MENSAJE = "Hola Freddy, vi la página de ModuForm y quiero cotizar un m
       a.rel = "noopener";
       if (a.classList.contains("js-wa-number")) a.textContent = "+" + WHATSAPP;
     }
+    /* Evento de analítica: qué botón de WhatsApp se tocó */
+    a.addEventListener("click", () => {
+      if (window.va) window.va("event", { name: "whatsapp_click", data: { origen: a.closest("section, header, footer")?.id || a.className.split(" ")[0] } });
+    });
   });
 
   /* Menú móvil */
