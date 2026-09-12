@@ -138,6 +138,20 @@ const WA_MENSAJE = "Hola Freddy, vi la página de ModuForm y quiero información
     window.open(waLink(texto), "_blank", "noopener");
   });
 
+  /* ---------- Videos: se reproducen solos al entrar en pantalla, se pausan al salir.
+     Conservan los controles por si la persona quiere pausar, adelantar o activar el sonido. ---------- */
+  const videos = Array.from(document.querySelectorAll(".reel video"));
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (videos.length && "IntersectionObserver" in window && !reduced) {
+    const vio = new IntersectionObserver((entries) => {
+      entries.forEach((en) => {
+        const v = en.target;
+        if (en.isIntersecting) { v.play().catch(() => {}); } else if (!v.paused) { v.pause(); }
+      });
+    }, { threshold: 0.4 });
+    videos.forEach((v) => vio.observe(v));
+  }
+
   /* ---------- Antes / después ---------- */
   document.querySelectorAll("[data-compare]").forEach((fig) => {
     const frame = fig.querySelector(".compare__frame");
