@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <title>ModuForm — isotipo</title>
+  <rect width="512" height="512" rx="113" fill="#1c1c1a"/>
+  <g id="Isotipo">
+    <rect x="48.00" y="48.00" width="176.00" height="176.00" rx="40.00" fill="#e6b06a"/>
+    <rect x="288.00" y="48.00" width="176.00" height="176.00" rx="40.00" fill="#ffffff"/>
+    <rect x="48.00" y="288.00" width="176.00" height="176.00" rx="40.00" fill="#ffffff"/>
+    <rect x="288.00" y="288.00" width="176.00" height="176.00" rx="40.00" fill="#e6b06a"/>
+  </g>
+</svg>

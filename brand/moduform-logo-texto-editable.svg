@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 461 84" width="461" height="84">
+  <title>ModuForm — logotipo horizontal</title>
+  
+  <g id="Isotipo">
+    <rect x="6.75" y="12.75" width="24.75" height="24.75" rx="5.62" fill="#a4622a"/>
+    <rect x="40.50" y="12.75" width="24.75" height="24.75" rx="5.62" fill="#1c1c1a"/>
+    <rect x="6.75" y="46.50" width="24.75" height="24.75" rx="5.62" fill="#1c1c1a"/>
+    <rect x="40.50" y="46.50" width="24.75" height="24.75" rx="5.62" fill="#a4622a"/>
+  </g>
+  <text id="Wordmark" x="90" y="62" font-family="Manrope, Arial, sans-serif" font-weight="800" font-size="72" letter-spacing="-1.4" fill="#1c1c1a">Modu<tspan fill="#a4622a">Form</tspan></text>
+</svg>
