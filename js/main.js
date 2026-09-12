@@ -156,9 +156,27 @@ const WA_MENSAJE = "Hola Freddy, vi la página de ModuForm y quiero información
   document.querySelectorAll("[data-compare]").forEach((fig) => {
     const frame = fig.querySelector(".compare__frame");
     const range = fig.querySelector(".compare__range");
-    const set = (v) => frame.style.setProperty("--pos", v + "%");
-    range.addEventListener("input", () => set(range.value));
-    set(range.value);
+    const set = (v) => { v = Math.max(0, Math.min(100, v)); frame.style.setProperty("--pos", v + "%"); range.value = v; };
+    /* Teclado y lectores de pantalla: el input range sigue siendo el control real */
+    range.addEventListener("input", () => set(Number(range.value)));
+    set(Number(range.value));
+    /* Ratón y táctil: se arrastra en cualquier punto de la imagen.
+       touch-action: pan-y deja pasar el scroll vertical y captura el movimiento horizontal. */
+    let arrastrando = false;
+    const desdeX = (x) => { const r = frame.getBoundingClientRect(); return ((x - r.left) / r.width) * 100; };
+    frame.addEventListener("pointerdown", (e) => {
+      if (e.button !== undefined && e.button !== 0) return;
+      arrastrando = true;
+      frame.setPointerCapture(e.pointerId);
+      set(desdeX(e.clientX));
+      e.preventDefault();
+    });
+    frame.addEventListener("pointermove", (e) => { if (arrastrando) set(desdeX(e.clientX)); });
+    const soltar = () => { arrastrando = false; };
+    frame.addEventListener("pointerup", soltar);
+    frame.addEventListener("pointercancel", soltar);
+    frame.addEventListener("lostpointercapture", soltar);
+    frame.addEventListener("click", () => range.focus({ preventScroll: true }));
   });
 
   /* ---------- Galería: filtros y visor ---------- */
